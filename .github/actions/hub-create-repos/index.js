@@ -1,24 +1,19 @@
 const { exec } = require('child_process');
 const fs = require("fs")
+const util = require("util")
 
-function run() {
-  return fs.readdir('./templates', (err, dirs) => {
+const readdir = util.promisify(fs.readdir);
+const pExec = util.promisify(exec)
+
+async function run() {
+  await readdir('./templates', (err, dirs) => {
     if (err) {
       console.log(err)
     } else {
       for (let dir of dirs) {
-        console.log("Is this working?", dir)
-        exec(`hub create ${dir}`, (error, stdout, stderr) => {
-          if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-          }
-          console.error(`stderr: ${stderr}`);
-          console.log(`stdout: ${stdout}`);
-        });
+        return await pExec(`hub create domitriusclark/${dir}`)
       }
     }
   })
 }
-
 run()
