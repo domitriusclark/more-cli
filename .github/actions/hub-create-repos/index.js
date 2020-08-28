@@ -15,7 +15,7 @@ async function run() {
       } else {
         console.log("No error inside readdir");
         for (let dir of dirs) {
-          return exec(`gh repo create ${dir}`)
+          exec(`gh repo create ${dir}`)
         }
       }
     })
