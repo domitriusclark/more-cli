@@ -4,21 +4,12 @@ const util = require('util');
 
 const readdir = util.promisify(fs.readdir);
 
-
 async function run() {
   try {
-    await readdir('./templates', (err, dirs) => {
-      console.log(dirs);
-      if (err) {
-        console.log("An error happened inside readdir");
-        console.log(err)
-      } else {
-        console.log("No error inside readdir");
-        for (let dir of dirs) {
-          exec(`gh repo create ${dir}`)
-        }
-      }
-    })
+    const dirs = await readdir('./templates')
+    for (let dir of dirs) {
+      exec(`gh repo create ${dir}`)
+    }
   } catch (error) {
     console.log(error.message)
   }
