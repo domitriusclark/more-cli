@@ -1,7 +1,10 @@
 const { exec } = require('child_process');
 const fs = require("fs")
+const path = require("path");
 
-fs.readdir('../../../templates', (err, dirs) => {
+const directoryPath = path.join(__dirname, '../../../templates');
+
+fs.readdir(directoryPath, (err, dirs) => {
   if (err) {
     console.log(err)
   } else {
