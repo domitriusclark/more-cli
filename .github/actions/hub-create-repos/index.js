@@ -3,17 +3,20 @@ const fs = require("fs")
 const util = require("util")
 
 const readdir = util.promisify(fs.readdir);
-const pExec = util.promisify(exec)
 
 async function run() {
   await readdir('./templates', (err, dirs) => {
+    console.log("top level", dirs)
     if (err) {
+      console.log("in the if error")
       console.log(err)
     } else {
       for (let dir of dirs) {
-        return await pExec(`hub create domitriusclark/${dir}`)
+        console.log("in the for loop", dir)
+        return exec(`hub create domitriusclark/${dir}`)
       }
     }
   })
 }
+
 run()
