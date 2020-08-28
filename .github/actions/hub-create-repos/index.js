@@ -1,11 +1,8 @@
 const { exec } = require('child_process');
 const fs = require("fs")
-const util = require('util');
 
-const readdir = util.promisify(fs.readdir);
-
-async function run() {
-  await readdir('templates', (err, dirs) => {
+function run() {
+  return fs.readdir('templates', (err, dirs) => {
     if (err) {
       console.log(err)
     } else {
