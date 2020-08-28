@@ -2,7 +2,7 @@ const { exec } = require('child_process');
 const fs = require("fs")
 
 function run() {
-  return fs.readdir('templates', (err, dirs) => {
+  return fs.readdir('./templates', (err, dirs) => {
     if (err) {
       console.log(err)
     } else {
