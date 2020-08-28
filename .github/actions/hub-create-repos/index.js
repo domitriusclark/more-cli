@@ -1,11 +1,9 @@
 const { exec } = require('child_process');
 const fs = require("fs")
-const util = require("util")
 
-const readdir = util.promisify(fs.readdir);
 
-async function run() {
-  await readdir('./templates', (err, dirs) => {
+function run() {
+  await fs.readdir('./templates', (err, dirs) => {
     console.log("top level", dirs)
     if (err) {
       console.log("in the if error")
