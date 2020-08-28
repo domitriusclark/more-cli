@@ -3,7 +3,7 @@ const fs = require("fs")
 
 
 function run() {
-  await fs.readdir('./templates', (err, dirs) => {
+  return fs.readdir('./templates', (err, dirs) => {
     console.log("top level", dirs)
     if (err) {
       console.log("in the if error")
