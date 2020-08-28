@@ -1,23 +1,32 @@
 const { exec } = require('child_process');
 const fs = require("fs")
+const util = require('util');
 
-function run() {
-  return fs.readdir('./templates', (err, dirs) => {
-    if (err) {
-      console.log(err)
-    } else {
-      for (let dir of dirs) {
-        exec(`gh repo create ${dir}`, (error, stdout, stderr) => {
-          if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-          }
-          console.error(`stderr: ${stderr}`);
-          console.log(`stdout: ${stdout}`);
-        });
+const readdir = util.promisify(fs.readdir);
+
+async function run() {
+  try {
+    await readdir('./templates', (err, dirs) => {
+      if (err) {
+        console.log(err)
+      } else {
+        for (let dir of dirs) {
+          console.log(dir)
+          exec(`gh repo create ${dir}`, (error, stdout, stderr) => {
+            if (error) {
+              console.error(`exec error: ${error}`);
+              return;
+            }
+            console.error(`stderr: ${stderr}`);
+            console.log(`stdout: ${stdout}`);
+          });
+        }
       }
-    }
-  })
+    })
+  } catch (error) {
+    console.log(error.message)
+  }
+
 }
 
 run()
