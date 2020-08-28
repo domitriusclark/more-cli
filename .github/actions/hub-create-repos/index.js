@@ -7,7 +7,7 @@ function run() {
       console.log(err)
     } else {
       for (let dir of dirs) {
-        console.log(dir)
+        console.log("Is this working?", dir)
         exec(`hub create ${dir}`, (error, stdout, stderr) => {
           if (error) {
             console.error(`exec error: ${error}`);
