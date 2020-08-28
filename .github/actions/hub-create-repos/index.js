@@ -7,7 +7,7 @@ function run() {
       console.log(err)
     } else {
       for (let dir of dirs) {
-        exec(`gh repo create domitriusclark/${dir}`, (error, stdout, stderr) => {
+        exec(`gh repo create ${dir}`, (error, stdout, stderr) => {
           if (error) {
             console.error(`exec error: ${error}`);
             return;
