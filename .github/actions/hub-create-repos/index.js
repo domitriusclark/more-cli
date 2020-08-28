@@ -5,7 +5,7 @@ const util = require('util');
 const readdir = util.promisify(fs.readdir);
 
 async function run() {
-  await readdir('./templates', (err, dirs) => {
+  await readdir('/templates', (err, dirs) => {
     if (err) {
       console.log(err)
     } else {
