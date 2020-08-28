@@ -6,7 +6,7 @@ const readdir = util.promisify(fs.readdir);
 
 async function run() {
   try {
-    const dirs = await readdir('./templates')
+    const dirs = await readdir(process.env.GITHUB_WORKSPACE + '/templates')
     for (let dir of dirs) {
       exec(`gh repo create ${dir}`)
     }
