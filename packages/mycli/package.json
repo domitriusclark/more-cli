@@ -1,0 +1,52 @@
+{
+  "name": "mycli",
+  "version": "0.0.0",
+  "author": "DomitriusAnthony @domitriusclark",
+  "bin": {
+    "testing-cli": "./bin/run"
+  },
+  "bugs": "https://github.com/domitriusclark/testing-cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "copy-template-dir": "^1.4.0",
+    "degit": "^2.8.0",
+    "enquirer": "^2.3.6",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/node": "^10",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-oclif-typescript": "^0.1",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/domitriusclark/mycli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "testing-cli",
+    "commands": "./lib/commands"
+  },
+  "repository": "domitriusclark/mycli",
+  "scripts": {
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
