@@ -11,7 +11,6 @@ async function run() {
         console.log(err)
       } else {
         for (let dir of dirs) {
-          console.log(dir)
           exec(`gh repo create ${dir}`, (error, stdout, stderr) => {
             if (error) {
               console.error(`exec error: ${error}`);
